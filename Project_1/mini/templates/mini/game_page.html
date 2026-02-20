@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TRIVIA — Play</title>
+  <link rel="stylesheet" href="{% static 'mini/css/base.css' %}">
+  <link rel="stylesheet" href="{% static 'mini/css/game.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="scanlines"></div>
+
+  <header class="game-header">
+    <a href="{% url 'welcome' %}" class="back-link">← Exit</a>
+    <span class="logo">TRIVIA</span>
+    <div class="score-display">
+      Score: <span id="score">{{ score|default:0 }}</span>
+    </div>
+  </header>
+
+  <main class="game-container">
+
+    <!-- Progress Bar -->
+    <div class="progress-bar-wrap">
+      <div class="progress-bar" id="progress-bar" style="width: {{ progress|default:0 }}%"></div>
+    </div>
+    <p class="question-counter">Question <span id="q-num">{{ question_number|default:1 }}</span> of <span id="q-total">{{ total_questions|default:"?" }}</span></p>
+
+    <!-- Question Card -->
+    <div class="question-card">
+      <p class="question-label">Q</p>
+      <p class="question-text" id="question-text">
+        {{ question|default:"Your question will appear here." }}
+      </p>
+    </div>
+
+    <!-- Answer Options -->
+    <!-- Pass a list of answer dicts like: [{"label": "A", "text": "..."}, ...] -->
+    <div class="answers-grid" id="answers-grid">
+      {% if answers %}
+        {% for answer in answers %}
+        <button class="answer-btn" data-value="{{ answer.value }}">
+          <span class="answer-label">{{ answer.label }}</span>
+          <span class="answer-text">{{ answer.text }}</span>
+        </button>
+        {% endfor %}
+      {% else %}
+        <!-- Placeholder slots shown when no data is passed -->
+        <button class="answer-btn placeholder"><span class="answer-label">A</span><span class="answer-text">Answer option</span></button>
+        <button class="answer-btn placeholder"><span class="answer-label">B</span><span class="answer-text">Answer option</span></button>
+        <button class="answer-btn placeholder"><span class="answer-label">C</span><span class="answer-text">Answer option</span></button>
+        <button class="answer-btn placeholder"><span class="answer-label">D</span><span class="answer-text">Answer option</span></button>
+      {% endif %}
+    </div>
+
+    <!-- Feedback message shown after answering -->
+    <div class="feedback" id="feedback" hidden>
+      <p id="feedback-text"></p>
+      <button class="next-btn" id="next-btn">Next →</button>
+    </div>
+
+  </main>
+
+</body>
+</html>
