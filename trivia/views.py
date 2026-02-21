@@ -1,9 +1,9 @@
 # header
 
+import os
 from django.shortcuts import render
 from google import genai
 import json
-from dotenv import dotenv_values
 
 
 def welcome(request):
@@ -21,9 +21,9 @@ def game_page(request):
     # score           : int
     # progress        : int  (0–100, drives the progress bar width)
     # ───────────────────────────────────────────────────────────────────────
-    env_vars = dotenv_values(".env")
+    GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 
-    client = genai.Client(api_key=env_vars["GEMINI_API_KEY"])
+    client = genai.Client(api_key=GEMINI_API_KEY)
 
     prompt = """
     Generate 1 images question. Respond with ONLY valid JSON, no markdown, no explanation.
