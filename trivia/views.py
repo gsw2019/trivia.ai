@@ -7,7 +7,7 @@ from dotenv import dotenv_values
 
 
 def welcome(request):
-    return render(request, "mini/welcome.html")
+    return render(request, "trivia/welcome.html")
 
 
 def game_page(request):
@@ -26,7 +26,7 @@ def game_page(request):
     client = genai.Client(api_key=env_vars["GEMINI_API_KEY"])
 
     prompt = """
-    Generate 1 trivia question. Respond with ONLY valid JSON, no markdown, no explanation.
+    Generate 1 images question. Respond with ONLY valid JSON, no markdown, no explanation.
     Use exactly this structure:
     {
         "question": "Your question here?",
@@ -63,4 +63,4 @@ def game_page(request):
         "score": 0,
         "progress": 0,
     }
-    return render(request, "mini/game_page.html", context)
+    return render(request, "trivia/game_page.html", context)
