@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from google import genai
 import json
+from dotenv import dotenv_values
 
-GEMINI_API_KEY="AIzaSyAH10HyPIb24638d5R9FHsj-fRihnKfYNA"
 
 def welcome(request):
     return render(request, "mini/welcome.html")
@@ -19,7 +19,9 @@ def game_page(request):
     # score           : int
     # progress        : int  (0–100, drives the progress bar width)
     # ───────────────────────────────────────────────────────────────────────
-    client = genai.Client(api_key=GEMINI_API_KEY)
+    env_vars = dotenv_values(".env")
+
+    client = genai.Client(api_key=env_vars["GEMINI_API_KEY"])
 
     prompt = """
     Generate 1 trivia question. Respond with ONLY valid JSON, no markdown, no explanation.
@@ -37,7 +39,7 @@ def game_page(request):
     """
 
     response = client.models.generate_content(
-        model="gemini-2.5-flash-lite",
+        model="gemini-2.5-pro",
         contents=prompt,
     )
 
