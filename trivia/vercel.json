@@ -2,7 +2,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "trivia/wsgi.py"
+      "dest": "django_project/wsgi.py"
     }
   ]
 }
