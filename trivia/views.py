@@ -21,7 +21,7 @@ def game_page(request):
     # score           : int
     # progress        : int  (0–100, drives the progress bar width)
     # ───────────────────────────────────────────────────────────────────────
-    GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
+    GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
     client = genai.Client(api_key=GEMINI_API_KEY)
 
