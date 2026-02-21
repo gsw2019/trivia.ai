@@ -1,0 +1,212 @@
+/* ── game.css ── */
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Header ── */
+.game-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.back-link {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  transition: color 0.2s;
+}
+.back-link:hover { color: var(--danger); }
+
+.logo {
+  font-family: var(--font-head);
+  font-size: 1.8rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 15px rgba(232,255,0,0.3);
+}
+
+.score-display {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--accent2);
+  letter-spacing: 0.1em;
+}
+
+/* ── Progress Bar ── */
+.progress-bar-wrap {
+  width: 100%;
+  height: 3px;
+  background: var(--border);
+}
+.progress-bar {
+  height: 100%;
+  background: var(--accent);
+  box-shadow: 0 0 10px rgba(232,255,0,0.5);
+  transition: width 0.5s ease;
+}
+
+/* ── Main layout ── */
+.game-container {
+  flex: 1;
+  max-width: 760px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  animation: fade-up 0.6s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.question-counter {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+  text-align: right;
+}
+
+/* ── Question Card ── */
+.question-card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  padding: 2rem 2rem 2rem 3.5rem;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+}
+
+.question-label {
+  position: absolute;
+  left: 0.9rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-head);
+  font-size: 2.5rem;
+  color: var(--accent);
+  opacity: 0.3;
+  line-height: 1;
+}
+
+.question-text {
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+/* ── Answers Grid ── */
+.answers-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+@media (max-width: 520px) {
+  .answers-grid { grid-template-columns: 1fr; }
+}
+
+.answer-btn {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, transform 0.1s;
+}
+
+.answer-btn:hover:not(:disabled) {
+  border-color: var(--accent);
+  background: rgba(232,255,0,0.05);
+  transform: translateY(-2px);
+}
+
+.answer-btn.placeholder {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.answer-btn.correct {
+  border-color: var(--accent2);
+  background: rgba(0,245,196,0.1);
+  color: var(--accent2);
+}
+
+.answer-btn.wrong {
+  border-color: var(--danger);
+  background: rgba(255,62,108,0.08);
+  color: var(--danger);
+}
+
+.answer-label {
+  font-family: var(--font-head);
+  font-size: 1.3rem;
+  color: var(--muted);
+  min-width: 1.5rem;
+  transition: color 0.15s;
+}
+
+.answer-btn:hover .answer-label { color: var(--accent); }
+.answer-btn.correct .answer-label { color: var(--accent2); }
+.answer-btn.wrong   .answer-label { color: var(--danger); }
+
+.answer-text {
+  line-height: 1.4;
+}
+
+/* ── Feedback ── */
+.feedback {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.4rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  animation: fade-up 0.4s ease both;
+}
+
+.feedback[hidden] { display: none; }
+
+#feedback-text {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+}
+
+.next-btn {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  padding: 0.5rem 1.2rem;
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.next-btn:hover {
+  background: var(--accent);
+  color: var(--bg);
+}

@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TRIVIA — Gemini Powered</title>
+  <link rel="stylesheet" href="{% static 'mini/css/base.css' %}">
+  <link rel="stylesheet" href="{% static 'mini/css/welcome.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="scanlines"></div>
+  <div class="noise"></div>
+
+  <main class="welcome-container">
+
+    <div class="glow-ring"></div>
+
+    <div class="content">
+      <p class="greeting">Hello, Player</p>
+      <h1 class="title">TRIVIA</h1>
+      <p class="subtitle">A <span class="gemini-tag">Gemini-powered</span> game</p>
+
+      <a href="{% url 'game_page' %}" class="start-btn">
+        <span class="btn-text">Start Game</span>
+        <span class="btn-arrow">→</span>
+      </a>
+    </div>
+
+    <div class="ticker">
+      <span>QUESTION &nbsp;·&nbsp; ANSWER &nbsp;·&nbsp; COMPETE &nbsp;·&nbsp; WIN &nbsp;·&nbsp; QUESTION &nbsp;·&nbsp; ANSWER &nbsp;·&nbsp; COMPETE &nbsp;·&nbsp; WIN &nbsp;·&nbsp; QUESTION &nbsp;·&nbsp; ANSWER &nbsp;·&nbsp; COMPETE &nbsp;·&nbsp; WIN &nbsp;·&nbsp;</span>
+    </div>
+
+  </main>
+
+</body>
+</html>
